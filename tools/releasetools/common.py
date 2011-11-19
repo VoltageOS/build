@@ -3697,6 +3697,9 @@ PARTITION_TYPES = {
     "emmc": "EMMC",
     "f2fs": "EMMC",
     "squashfs": "EMMC",
+    "ext2": "EMMC",
+    "ext3": "EMMC",
+    "vfat": "EMMC",
     "erofs": "EMMC"
 }
 
