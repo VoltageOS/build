@@ -331,7 +331,6 @@ function set_stuff_for_environment()
     set_lunch_paths
     set_sequence_number
 
-    export ANDROID_BUILD_TOP=$(gettop)
 }
 
 function set_sequence_number()
@@ -1195,3 +1194,5 @@ addcompletions
 if [[ "$USE_LEFTOVERS" -eq 1 ]]; then
   leftovers
 fi
+
+export ANDROID_BUILD_TOP=$(gettop)
