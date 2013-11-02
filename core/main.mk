@@ -538,7 +538,7 @@ subdir_makefiles += $(SOONG_OUT_DIR)/late-$(TARGET_PRODUCT).mk
 subdir_makefiles_total := $(words int $(subdir_makefiles) post finish)
 .KATI_READONLY := subdir_makefiles_total
 
-$(foreach mk,$(subdir_makefiles),$(info [$(call inc_and_print,subdir_makefiles_inc)/$(subdir_makefiles_total)] including $(mk) ...)$(eval include $(mk)))
+$(foreach mk,$(subdir_makefiles),$([$(call inc_and_print,subdir_makefiles_inc)/$(subdir_makefiles_total)])$(eval include $(mk)))
 
 # For an unbundled image, we can skip blueprint_tools because unbundled image
 # aims to remove a large number framework projects from the manifest, the
