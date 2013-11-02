@@ -272,7 +272,7 @@ subdir_makefiles += $(SOONG_OUT_DIR)/late-$(TARGET_PRODUCT)$(COVERAGE_SUFFIX).mk
 
 include_makefiles_total := $(words int $(subdir_makefiles))
 
-$(foreach mk,$(subdir_makefiles),$(info [$(call inc_and_print,include_makefiles_inc)/$(include_makefiles_total)] including $(mk) ...)$(eval include $(mk)))
+$(foreach mk,$(subdir_makefiles),$([$(call inc_and_print,include_makefiles_inc)/$(include_makefiles_total)]$(eval include $(mk))))
 
 # Unfortunately build/tasks is included at a wrong time and the order is important (b/417070498)
 -include device/generic/goldfish/build/tasks.workaround/emu_img_zip.mk
