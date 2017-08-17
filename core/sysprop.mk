@@ -249,6 +249,7 @@ gen_from_buildinfo_sh := $(call intermediates-dir-for,PACKAGING,system_build_pro
 $(gen_from_buildinfo_sh): $(INTERNAL_BUILD_ID_MAKEFILE) $(API_FINGERPRINT) | $(BUILD_DATETIME_FILE) $(BUILD_NUMBER_FILE)
 	$(hide) TARGET_BUILD_TYPE="$(TARGET_BUILD_VARIANT)" \
 	        TARGET_BUILD_FLAVOR="$(TARGET_BUILD_FLAVOR)" \
+		VOLTAGE_DEVICE="$(TARGET_DEVICE)" \
 	        TARGET_DEVICE="$(TARGET_DEVICE)" \
 	        PRODUCT_DEFAULT_LOCALE="$(call get-default-product-locale,$(PRODUCT_LOCALES))" \
 	        PRODUCT_DEFAULT_WIFI_CHANNELS="$(PRODUCT_DEFAULT_WIFI_CHANNELS)" \
