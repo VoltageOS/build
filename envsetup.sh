@@ -448,6 +448,14 @@ function print_lunch_menu()
 
 function _lunch_meat()
 {
+
+    if (echo -n $1 | grep -q -e "^voltage_") ; then
+        VOLTAGE_BUILD=$(echo -n $1 | sed -e 's/^voltage_//g')
+    else
+        VOLTAGE_BUILD=
+    fi
+    export VOLTAGE_BUILD
+
     local product=$1
     local release=$2
     local variant=$3
@@ -474,6 +482,8 @@ function _lunch_meat()
     export TARGET_BUILD_APPS=
 
     [[ -n "${ANDROID_QUIET_BUILD:-}" ]] || echo
+
+    fixup_common_out_dir
 
     set_stuff_for_environment
     [[ -n "${ANDROID_QUIET_BUILD:-}" ]] || printconfig
