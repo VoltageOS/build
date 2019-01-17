@@ -134,7 +134,10 @@ ifeq ($(AB_OTA_UPDATER),true)
 ADDITIONAL_VENDOR_PROPERTIES += ro.vendor.build.ab_ota_partitions=$(subst $(space),$(comma),$(sort $(AB_OTA_PARTITIONS)))
 endif
 
-user_variant := $(filter user userdebug,$(TARGET_BUILD_VARIANT))
+user_variant := user
+ifeq ($(TARGET_BUILD_VARIANT),eng)
+user_variant :=
+endif
 
 config_enable_uffd_gc := \
   $(firstword $(OVERRIDE_ENABLE_UFFD_GC) $(PRODUCT_ENABLE_UFFD_GC) default)
