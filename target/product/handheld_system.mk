@@ -66,7 +66,6 @@ PRODUCT_PACKAGES += \
     Telecom \
     TelephonyProvider \
     TeleService \
-    Traceur \
     UserDictionaryProvider \
     VpnDialogs \
     vr \
@@ -83,3 +82,7 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_VENDOR_PROPERTIES += \
     ro.carrier?=unknown
+
+# Traceur for debug only
+PRODUCT_PACKAGES_ENG += \
+    Traceur
