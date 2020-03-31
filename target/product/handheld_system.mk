@@ -71,7 +71,6 @@ PRODUCT_PACKAGES += \
     SharedStorageBackup \
     SimAppDialog \
     TeleService \
-    Traceur \
     UserDictionaryProvider \
     VpnDialogs \
     vr \
@@ -115,3 +114,7 @@ PRODUCT_PACKAGES += framework-audio_effects.xml
 
 PRODUCT_VENDOR_PROPERTIES += \
     ro.carrier?=unknown
+
+# Traceur for debug only
+PRODUCT_PACKAGES_ENG += \
+    Traceur
