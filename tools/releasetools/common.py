@@ -1722,7 +1722,7 @@ def _MakeRamdisk(sourcedir, fs_config_file=None,
   elif ramdisk_format == RamdiskFormat.GZ:
     p2 = Run(["gzip"], stdin=p1.stdout, stdout=ramdisk_img.file.fileno())
   else:
-    raise ValueError("Only support lz4 or gzip ramdisk format.")
+    raise ValueError("Only support lz4, xz, or gzip ramdisk format.")
 
   p2.wait()
   p1.wait()
@@ -4189,8 +4189,14 @@ def GetBootImageBuildProp(boot_img, ramdisk_format=RamdiskFormat.LZ4):
           p2 = Run(['gzip', '-d'], stdin=input_stream.fileno(),
                    stdout=output_stream.fileno())
           p2.wait()
+    elif ramdisk_format == RamdiskFormat.XZ:
+      with open(ramdisk, 'rb') as input_stream:
+        with open(uncompressed_ramdisk, 'wb') as output_stream:
+          p2 = Run(['xz', '-d'], stdin=input_stream.fileno(),
+                   stdout=output_stream.fileno())
+          p2.wait()
     else:
-      logger.error('Only support lz4 or gzip ramdisk format.')
+      logger.error('Only support lz4, xz, or gzip ramdisk format.')
       return None
 
     abs_uncompressed_ramdisk = os.path.abspath(uncompressed_ramdisk)
