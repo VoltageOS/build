@@ -5322,7 +5322,7 @@ name := $(product_name)-ota-$(FILE_NAME_TAG)
 INTERNAL_OTA_PACKAGE_TARGET := $(PRODUCT_OUT)/$(name).zip
 INTERNAL_OTA_METADATA := $(PRODUCT_OUT)/ota_metadata
 
-ifeq ($(TARGET_BUILD_VARIANT),user)
+ifeq ($(TARGET_EXCLUDE_BACKUPTOOL),true)
     $(INTERNAL_OTA_PACKAGE_TARGET): backuptool := false
 else
 ifneq ($(VOLTAGE_BUILD),)
