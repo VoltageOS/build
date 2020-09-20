@@ -795,8 +795,9 @@ def ProcessTargetFileEntries(input_tf_zip: zipfile.ZipFile, output_tf_dir: str, 
         print("           : %-*s payload   (%s)" % (
             maxsize, name, payload_key))
 
+        avbtool = misc_info['avb_avbtool'] if 'avb_avbtool' in misc_info else 'avbtool'
         signed_apex = apex_utils.SignApex(
-            misc_info['avb_avbtool'],
+            avbtool,
             data,
             payload_key,
             container_key,
@@ -890,8 +891,9 @@ def ProcessTargetFileEntries(input_tf_zip: zipfile.ZipFile, output_tf_dir: str, 
       # key is specified via --avb_system_other_key.
       signing_key = OPTIONS.avb_keys.get("system_other")
       if signing_key:
+        avbtool = misc_info['avb_avbtool'] if 'avb_avbtool' in misc_info else 'avbtool'
         public_key = common.ExtractAvbPublicKey(
-            misc_info['avb_avbtool'], signing_key)
+            avbtool, signing_key)
         print("    Rewriting AVB public key of system_other in /product")
         WriteOutputFile(output_tf_dir, public_key, filename)
 
