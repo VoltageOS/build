@@ -8035,8 +8035,8 @@ task_makefiles := \
 	$(sort $(wildcard vendor/*/*/build/tasks/*.mk)) \
 	$(sort $(wildcard device/*/*/build/tasks/*.mk)) \
 	$(sort $(wildcard product/*/*/build/tasks/*.mk)) \
-	$(sort $(wildcard platform_testing/build/tasks/*.mk)) \
-	$(sort $(wildcard test/vts/tools/build/tasks/*.mk))
+#	$(sort $(wildcard platform_testing/build/tasks/*.mk)) \
+#	$(sort $(wildcard test/vts/tools/build/tasks/*.mk))
 
 include_makefiles_total := $(words int $(task_makefiles))
 include_makefiles_inc:=
