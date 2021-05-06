@@ -480,6 +480,13 @@ function _lunch_meat()
     # Undo any previous tapas or banchan setup
     export TARGET_BUILD_APPS=
 
+    local no_kernel=$(_get_build_var_cached TARGET_NO_KERNEL)
+    if [[ "$no_kernel" == "true" ]]; then
+        unset INLINE_KERNEL_BUILDING
+    else
+        export INLINE_KERNEL_BUILDING=true
+    fi
+
     [[ -n "${ANDROID_QUIET_BUILD:-}" ]] || echo
 
     fixup_common_out_dir
