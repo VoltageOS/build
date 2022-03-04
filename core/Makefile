@@ -1547,7 +1547,7 @@ ifneq ($(filter \
     $(BOARD_VENDOR_DLKMIMAGE_FILE_SYSTEM_TYPE) \
     $(BOARD_ODM_DLKMIMAGE_FILE_SYSTEM_TYPE) \
   ,erofs),)
-INTERNAL_USERIMAGES_DEPS += $(MKEROFSUSERIMG)
+INTERNAL_USERIMAGES_DEPS += $(MKEROFS)
 endif
 
 ifneq ($(filter \
@@ -4298,7 +4298,6 @@ INTERNAL_OTATOOLS_MODULES := \
   mke2fs \
   mke2fs.conf \
   mkfs.erofs \
-  mkerofsimage.sh \
   mkf2fsuserimg.sh \
   mksquashfs \
   mksquashfsimage.sh \
