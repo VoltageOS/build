@@ -59,7 +59,7 @@ DEX_PREOPT_WITH_UPDATABLE_BCP := true
 # Conditional to building on linux, as dex2oat currently does not work on darwin.
 ifeq ($(HOST_OS),linux)
   # Add mini-debug-info to the boot classpath unless explicitly asked not to.
-  ifneq (false,$(WITH_DEXPREOPT_DEBUG_INFO))
+  ifeq (true,$(WITH_DEXPREOPT_DEBUG_INFO))
     PRODUCT_DEX_PREOPT_BOOT_FLAGS += --generate-mini-debug-info
   endif
 endif
