@@ -528,7 +528,6 @@ PRODUCT_PACKAGES_DEBUG := \
     ss \
     start_with_lockagent \
     strace \
-    su \
     sanitizer-status \
     tracepath \
     tracepath6 \
