@@ -24,5 +24,6 @@ PRODUCT_PACKAGES := \
     com.android.cellbroadcast \
     CellBroadcastLegacyApp \
     preinstalled-packages-platform-telephony-system.xml \
+    TeleService
 
 PRODUCT_COPY_FILES := \
