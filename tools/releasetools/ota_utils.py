@@ -234,8 +234,12 @@ def UpdateDeviceState(device_state, build_info, boot_variable_values,
 
       # TODO(xunchang) set the boot image's version with kmi. Note the boot
       # image doesn't have a file map.
-      partition_state.version = build_info.GetPartitionBuildProp(
-          'ro.build.date.utc', partition)
+      try:
+        partition_state.version = build_info.GetPartitionBuildProp(
+            'ro.build.date.utc', partition)
+      except common.ExternalError:
+          partition_state.version = build_info.GetPartitionBuildProp(
+              'ro.build.date.utc', 'system')
 
   # TODO(xunchang), we can save a call to ComputeRuntimeBuildInfos.
   build_devices, build_fingerprints = \
