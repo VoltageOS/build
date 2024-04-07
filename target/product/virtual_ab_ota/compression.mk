@@ -31,5 +31,4 @@ PRODUCT_VENDOR_PROPERTIES += ro.virtual_ab.io_uring.enabled?=true
 PRODUCT_VIRTUAL_AB_COMPRESSION := true
 PRODUCT_PACKAGES += \
     snapuserd.vendor_ramdisk \
-    snapuserd \
-    snapuserd.recovery
+    snapuserd
