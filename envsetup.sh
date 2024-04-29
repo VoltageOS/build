@@ -1189,6 +1189,16 @@ unset tomlgrep
 unset treegrep
 
 
+function vosupload() {
+    read -p "Enter your SourceForge username: " sf_username
+    read -p "Enter the output filename (without .zip extension): " filename
+    target_device="$(get_build_var TARGET_DEVICE)"
+    product_out="out/target/product/$target_device/"
+    source_file="$product_out/${filename}.zip"
+    destination="${sf_username}@frs.sourceforge.net:/home/frs/project/voltage-os/$target_device/"
+    rsync -e ssh "$source_file" "$destination"
+}
+
 validate_current_shell
 set_global_paths
 source_vendorsetup
