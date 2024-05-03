@@ -2980,6 +2980,9 @@ endif
 recovery_intermediates := $(call intermediates-dir-for,PACKAGING,recovery)
 $(eval $(call write-partition-file-list,$(recovery_intermediates)/file_list.txt,$(TARGET_RECOVERY_OUT),$(INTERNAL_RECOVERYIMAGE_FILES)))
 
+ifdef BOARD_CUSTOM_BOOTIMG_MK
+include $(BOARD_CUSTOM_BOOTIMG_MK)
+endif
 
 # -----------------------------------------------------------------
 # Build debug ramdisk and debug boot image.
@@ -3026,9 +3029,6 @@ $(eval $(call declare-0p-target,$(INSTALLED_FILES_JSON_DEBUG_RAMDISK)))
 
 ifdef BUILDING_DEBUG_BOOT_IMAGE
 
-ifdef BOARD_CUSTOM_BOOTIMG_MK
-include $(BOARD_CUSTOM_BOOTIMG_MK)
-endif
 # -----------------------------------------------------------------
 # the debug ramdisk, which is the original ramdisk plus additional
 # files: force_debuggable, adb_debug.prop and userdebug sepolicy.
@@ -6196,11 +6196,9 @@ endif
 ifeq ($(BUILDING_WITH_VSDK),true)
 	$(hide) echo "building_with_vsdk=true" >> $@
 endif
-
 ifneq ($(TARGET_OTA_ASSERT_DEVICE),)
-        $(hide) echo "ota_override_device=$(TARGET_OTA_ASSERT_DEVICE)" >> $@
+	$(hide) echo "ota_override_device=$(TARGET_OTA_ASSERT_DEVICE)" >> $@
 endif
-
 
 $(call declare-0p-target,$(INSTALLED_FASTBOOT_INFO_TARGET))
 
