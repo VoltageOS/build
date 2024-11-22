@@ -58,6 +58,7 @@ PRODUCT_PACKAGES += \
     MmsService \
     MtpService \
     MusicFX \
+    NetworkLocation \
     PacProcessor \
     preinstalled-packages-platform-handheld-system.xml \
     PrintRecommendationService \
