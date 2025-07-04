@@ -1217,6 +1217,18 @@ endif
 
 .KATI_READONLY := JAVAC_NINJA_POOL R8_NINJA_POOL D8_NINJA_POOL
 
+# Soong modules that are known to have broken optional_uses_libs dependencies.
+BUILD_WARNING_BAD_OPTIONAL_USES_LIBS_ALLOWLIST += \
+    webview \
+    LegacyCamera \
+    Gallery2 \
+    androidx.test.uiautomator_uiautomator \
+    androidx.wear_wear \
+    androidx.wear.compose_compose-foundation \
+    androidx.wear.watchface_watchface-complications-data \
+    androidx.wear.watchface_watchface-complications-data-source \
+    androidx.wear.watchface_watchface
+
 # These goals don't need to collect and include Android.mks/CleanSpec.mks
 # in the source tree.
 dont_bother_goals := out product-graph
