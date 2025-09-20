@@ -240,14 +240,9 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
   script.SetPermissionsRecursive("/tmp/install", 0, 0, 0o755, 0o644, None, None)
   script.SetPermissionsRecursive("/tmp/install/bin", 0, 0, 0o755, 0o755, None, None)
 
-  if target_info.get("system_root_image") == "true":
-    sysmount = "/"
-  else:
-    sysmount = "/system"
-
   if OPTIONS.backuptool:
     script.Print("BackupTools: starting backup script")
-    script.RunBackup("backup", sysmount, target_info.get('use_dynamic_partitions') == "true")
+    script.RunBackup("backup", target_info.get('use_dynamic_partitions') == "true")
     script.Print("BackupTools: DONE! Now real installation will begin")
 
   # All other partitions as well as the data wipe use 10% of the progress, and
@@ -290,12 +285,10 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
   common.CheckSize(boot_img.data, "boot.img", target_info)
   common.ZipWriteStr(output_zip, "boot.img", boot_img.data)
 
-  device_specific.FullOTA_PostValidate()
-
   if OPTIONS.backuptool:
     script.ShowProgress(0.02, 10)
     script.Print("BackupTools: Restoring backup")
-    script.RunBackup("restore", sysmount, target_info.get('use_dynamic_partitions') == "true")
+    script.RunBackup("restore", target_info.get('use_dynamic_partitions') == "true")
     script.Print("BackupTools: DONE!")
 
   script.WriteRawImage("/boot", "boot.img")

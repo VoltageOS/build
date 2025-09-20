@@ -156,8 +156,8 @@ class EdifyGenerator(object):
            ");")
     self.script.append(self.WordWrap(cmd))
 
-  def RunBackup(self, command, mount_point, dynamic=False):
-    systemEntry = self.fstab[mount_point]
+  def RunBackup(self, command, dynamic=False):
+    systemEntry = self.fstab["/system"]
     if dynamic:
       for p in ["vendor", "product", "system_ext"]:
         fstabEntry = self.fstab.get("/"+p, None)

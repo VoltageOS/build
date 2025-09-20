@@ -144,6 +144,10 @@ Non-A/B OTA specific options
       that any changes made to the system partition are done using the new
       recovery (new kernel, etc.).
 
+  --backup <boolean>
+      Enable or disable the execution of backuptool.sh.
+      Disabled by default.
+
 A/B OTA specific options
 
   --disable_fec_computation
@@ -268,10 +272,6 @@ A/B OTA specific options
   --full_ota_partitions
       Specify list of partitions should be updated in full OTA fashion, even if
       an incremental OTA is about to be generated
-
-  --backup <boolean>
-      Enable or disable the execution of backuptool.sh.
-      Disabled by default.
 """
 
 from __future__ import print_function
@@ -312,6 +312,7 @@ OPTIONS.worker_threads = multiprocessing.cpu_count() // 2
 if OPTIONS.worker_threads == 0:
   OPTIONS.worker_threads = 1
 OPTIONS.two_step = False
+OPTIONS.backuptool = False
 OPTIONS.include_secondary = False
 OPTIONS.block_based = True
 OPTIONS.updater_binary = None
@@ -347,7 +348,6 @@ OPTIONS.vabc_cow_version = None
 OPTIONS.compression_factor = None
 OPTIONS.full_ota_partitions = None
 
-OPTIONS.backuptool = False
 
 POSTINSTALL_CONFIG = 'META/postinstall_config.txt'
 DYNAMIC_PARTITION_INFO = 'META/dynamic_partitions_info.txt'
@@ -1248,6 +1248,8 @@ def main(argv):
                          "integers are allowed." % (a, o))
     elif o in ("-2", "--two_step"):
       OPTIONS.two_step = True
+    elif o == "--backup":
+      OPTIONS.backuptool = True
     elif o == "--include_secondary":
       OPTIONS.include_secondary = True
     elif o == "--no_signing":
@@ -1350,8 +1352,6 @@ def main(argv):
     elif o == "--full_ota_partitions":
       OPTIONS.full_ota_partitions = set(
           a.strip().strip("\"").strip("'").split(","))
-    elif o == "--backup":
-      OPTIONS.backuptool = True
     else:
       return False
     return True
@@ -1368,6 +1368,7 @@ def main(argv):
                                  "extra_script=",
                                  "worker_threads=",
                                  "two_step",
+                                 "backup=",
                                  "include_secondary",
                                  "no_signing",
                                  "block",
@@ -1400,7 +1401,6 @@ def main(argv):
                                  "vabc_compression_param=",
                                  "security_patch_level=",
                                  "max_threads=",
-                                 "backup=",
                                  "vabc_cow_version=",
                                  "compression_factor=",
                                  "full_ota_partitions=",
